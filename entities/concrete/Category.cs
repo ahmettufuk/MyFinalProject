@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using entities.absract;
 
+
 namespace entities.concrete
 {
     public class Category : IEntity

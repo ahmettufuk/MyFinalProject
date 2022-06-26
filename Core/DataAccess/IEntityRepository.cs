@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using entities.absract;
 
-namespace Business.absract
+namespace Core.DataAccess
 {
     public interface IEntityRepository<TEntity> 
     where TEntity : class, IEntity, new()
