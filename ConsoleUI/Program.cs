@@ -13,6 +13,5 @@ Console.WriteLine(result3.Count);
 
 foreach (var p in result3)
 {
-    Console.WriteLine($"{p.ProductName} | {p.UnitPrice}");
-
+    Console.WriteLine($"{p.ProductName} | {p.UnitPrice:C2}");
 }
