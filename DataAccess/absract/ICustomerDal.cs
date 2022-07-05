@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Core.DataAccess;
 using entities.concrete;
 
+
 namespace DataAccess.absract
 {
     public interface ICustomerDal : IEntityRepository<Customer>

@@ -2,16 +2,15 @@
 
 using DataAccess.concrete.EntityFrameWork;
 using DataAccess.concrete.InMemory;
+using entities.concrete;
 
 ProductManager productManager = new ProductManager(new EfProductDal());
-
-var result = productManager.GetAll();
-var result2 = productManager.GetAllByCategory(1);
-var result3 = productManager.GetByUnitPrice(40, 100);
-
-Console.WriteLine(result3.Count);
-
-foreach (var p in result3)
+var result =productManager.GetAll();
+foreach (var product in result.Data)
 {
-    Console.WriteLine($"{p.ProductName} | {p.UnitPrice:C2}");
+    Console.WriteLine(product.ProductName);
 }
+CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
+
+
+

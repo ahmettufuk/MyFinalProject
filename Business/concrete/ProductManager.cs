@@ -4,8 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Business.absract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.absract;
 using entities.concrete;
+using entities.DTOs;
+
 
 namespace Business.concrete
 {
@@ -18,19 +22,56 @@ namespace Business.concrete
             _productDal = productDal;
         }
 
-        public List<Product> GetAll()
+        public IDataResult<List<Product>> GetAll()
         {
-            return _productDal.GetAll();
+            if (DateTime.Now.Hour ==3)
+            {
+            return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
+                
+            }
+            return new SuccesDataResult<List<Product>>(_productDal.GetAll(),Messages.ProductsListed);
+
         }
 
-        public List<Product> GetAllByCategory(int categoryId)
+        public IDataResult<List<Product>> GetAllByCategory(int categoryId)
         {
-            return _productDal.GetAll().Where(p => p.CategoryId == categoryId).ToList();
+            return new SuccesDataResult<List<Product>>(_productDal.GetAll().Where(p => p.CategoryId == categoryId).ToList());
         }
 
-        public List<Product> GetByUnitPrice(decimal min, decimal max)
+        public IDataResult<List<Product>> GetByUnitPrice(decimal min, decimal max)
         {
-            return _productDal.GetAll().Where(p => p.UnitPrice > min && p.UnitPrice < max).ToList();
+            return new SuccesDataResult<List<Product>>(_productDal.GetAll().Where(p => p.UnitPrice > min && p.UnitPrice < max).ToList()) ;
+        }
+
+        public IDataResult<List<ProductDetailDto>> GetProductDetails()
+        {
+            return new DataResult<List<ProductDetailDto>>(_productDal.GetProductDetails(),true,"Product Listed");
+        }
+
+        public IDataResult<Product> GetById(int productId)
+        {
+            return new SuccesDataResult<Product>(_productDal.Get(p => p.ProductId == productId));
+        }
+
+        public IResult Add(Product product)
+        {
+            if (product.ProductName.Length<2)
+            {
+                return new ErrorResult(Messages.ProductNameInvalid);
+            }
+
+            _productDal.Add(product);
+            return  new SuccessResult(Messages.ProductAdded);
+        }
+
+        public void Update(Product product)
+        {
+            _productDal.Update(product);
+        }
+
+        public void Delete(Product product)
+        {
+            _productDal.Delete(product);
         }
     }
 }

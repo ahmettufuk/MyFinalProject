@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataAccess.absract;
 using entities.concrete;
+using entities.DTOs;
 
 namespace DataAccess.concrete.InMemory
 {
@@ -40,19 +41,10 @@ namespace DataAccess.concrete.InMemory
 
             };
         }
-        public List<Product> GetAll()
-        {
-            return _products;
-        }
-
-        public List<Product> GetAllByCategoryId(int categoryId)
-        {
-            return _products.Where(p => p.CategoryId == categoryId).ToList();
-        }
 
         public List<Product> GetAll(Expression<Func<Product, bool>> filter = null)
         {
-            throw new NotImplementedException();
+            return _products;
         }
 
         public Product Get(Expression<Func<Product, bool>> filter)
@@ -60,27 +52,24 @@ namespace DataAccess.concrete.InMemory
             throw new NotImplementedException();
         }
 
-        public void Add(Product product)
+        public void Add(Product entity)
         {
-            _products.Add(product);
+            throw new NotImplementedException();
         }
 
-        public void Delete(Product product)
+        public void Delete(Product entity)
         {
-            Product productToDelete = null;
-            productToDelete = _products.SingleOrDefault(p=> p.ProductId == product.ProductId);
-            _products.Remove(productToDelete);
+            throw new NotImplementedException();
         }
 
-        public void Update(Product product)
+        public void Update(Product entity)
         {
-            Product productToUpdate = null;
-            productToUpdate = _products.SingleOrDefault(p => p.ProductId == product.ProductId);
-            productToUpdate.ProductId = product.ProductId;
-            productToUpdate.CategoryId = product.CategoryId;
-            productToUpdate.ProductName = product.ProductName;
-            productToUpdate.UnitsInStock = product.UnitsInStock;
-            productToUpdate.UnitPrice = product.UnitPrice;
+            throw new NotImplementedException();
+        }
+
+        public List<ProductDetailDto> GetProductDetails()
+        {
+            throw new NotImplementedException();
         }
     }
 }
