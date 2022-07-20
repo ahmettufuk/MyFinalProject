@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using entities.absract;
 
 namespace entities.concrete
 {
-    public partial class SalesTotalsByAmount : IEntity
+    public partial class SalesTotalsByAmount
     {
         public decimal? SaleAmount { get; set; }
         public int OrderId { get; set; }

@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using entities.absract;
 
 namespace entities.concrete
 {
-    public partial class OrdersQry :IEntity
+    public partial class OrdersQry
     {
         public int OrderId { get; set; }
         public string? CustomerId { get; set; }

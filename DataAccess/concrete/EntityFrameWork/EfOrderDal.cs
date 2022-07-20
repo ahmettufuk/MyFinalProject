@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ClassLibrary1.Models;
 using Core.DataAccess.EntityFramework;
 using DataAccess.absract;
 using entities.concrete;

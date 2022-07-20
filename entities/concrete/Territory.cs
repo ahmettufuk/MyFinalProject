@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using entities.absract;
 
 namespace entities.concrete
 {
-    public partial class Territory :IEntity
+    public partial class Territory
     {
         public Territory()
         {

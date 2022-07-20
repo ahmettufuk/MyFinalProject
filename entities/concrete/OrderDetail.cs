@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using entities.absract;
 
 namespace entities.concrete
 {
-    public partial class OrderDetail : IEntity
+    public partial class OrderDetail
     {
         public int OrderId { get; set; }
         public int ProductId { get; set; }

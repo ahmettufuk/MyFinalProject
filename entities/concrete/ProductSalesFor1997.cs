@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using entities.absract;
 
 namespace entities.concrete
 {
-    public partial class ProductSalesFor1997 : IEntity
+    public partial class ProductSalesFor1997
     {
         public string CategoryName { get; set; } = null!;
         public string ProductName { get; set; } = null!;

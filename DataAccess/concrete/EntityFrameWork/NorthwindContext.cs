@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Core.Entities.Concrete;
 using entities.concrete;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace ClassLibrary1.Models
+namespace DataAccess.concrete.EntityFrameWork
 {
     public partial class NorthwindContext : DbContext
     {
@@ -26,6 +24,7 @@ namespace ClassLibrary1.Models
         public virtual DbSet<CustomerDemographic> CustomerDemographics { get; set; } = null!;
         public virtual DbSet<Employee> Employees { get; set; } = null!;
         public virtual DbSet<Invoice> Invoices { get; set; } = null!;
+        public virtual DbSet<OperationClaim> OperationClaims { get; set; } = null!;
         public virtual DbSet<Order> Orders { get; set; } = null!;
         public virtual DbSet<OrderDetail> OrderDetails { get; set; } = null!;
         public virtual DbSet<OrderDetailsExtended> OrderDetailsExtendeds { get; set; } = null!;
@@ -44,12 +43,15 @@ namespace ClassLibrary1.Models
         public virtual DbSet<SummaryOfSalesByYear> SummaryOfSalesByYears { get; set; } = null!;
         public virtual DbSet<Supplier> Suppliers { get; set; } = null!;
         public virtual DbSet<Territory> Territories { get; set; } = null!;
+        public virtual DbSet<User> Users { get; set; } = null!;
+        public virtual DbSet<User1> Users1 { get; set; } = null!;
+        public virtual DbSet<UserOperationClaim> UserOperationClaims { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=Northwind;Trusted_Connection=True;");
             }
         }
@@ -316,6 +318,13 @@ namespace ClassLibrary1.Models
                 entity.Property(e => e.ShipperName).HasMaxLength(40);
 
                 entity.Property(e => e.UnitPrice).HasColumnType("money");
+            });
+
+            modelBuilder.Entity<OperationClaim>(entity =>
+            {
+                entity.Property(e => e.Name)
+                    .HasMaxLength(250)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Order>(entity =>
@@ -725,6 +734,56 @@ namespace ClassLibrary1.Models
                     .HasForeignKey(d => d.RegionId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Territories_Region");
+            });
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.ToTable("User");
+
+                entity.Property(e => e.Email)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.FirstName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.LastName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PasswordHash)
+                    .HasMaxLength(500)
+                    .IsFixedLength();
+
+                entity.Property(e => e.PasswordSalt)
+                    .HasMaxLength(500)
+                    .IsFixedLength();
+            });
+
+            modelBuilder.Entity<User1>(entity =>
+            {
+                entity.ToTable("Users");
+
+                entity.Property(e => e.Email)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.FirstName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.LastName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PasswordHash)
+                    .HasMaxLength(500)
+                    .IsFixedLength();
+
+                entity.Property(e => e.PasswordSalt)
+                    .HasMaxLength(500)
+                    .IsFixedLength();
             });
 
             OnModelCreatingPartial(modelBuilder);

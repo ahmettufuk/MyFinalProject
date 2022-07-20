@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using entities.absract;
 
 namespace entities.concrete
 {
-    public partial class CustomerDemographic : IEntity
+    public partial class CustomerDemographic
     {
         public CustomerDemographic()
         {

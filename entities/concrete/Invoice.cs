@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using entities.absract;
 
 namespace entities.concrete
 {
-    public partial class Invoice : IEntity
+    public partial class Invoice
     {
         public string? ShipName { get; set; }
         public string? ShipAddress { get; set; }

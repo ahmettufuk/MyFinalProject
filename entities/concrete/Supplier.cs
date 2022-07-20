@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using entities.absract;
 
 namespace entities.concrete
 {
-    public partial class Supplier : IEntity
+    public partial class Supplier
     {
         public Supplier()
         {
